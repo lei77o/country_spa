@@ -19,7 +19,7 @@
           <td>{{country.capital}}</td>
           <td ><div class="badge badge-secundary ">{{country.population | number}}</div></td>
           <td>
-            <a class="link-primary cursor-pointer" [routerLink]="['/country/by', country.cca2]">More info ...</a>
+            <a class="link-primary cursor-pointer" [routerLink]="['/landing/country/by', country.cca2]">More info ...</a>
           </td>
         </tr>
       }
@@ -31,7 +31,7 @@
         </tr>
       }
 
-      @if(countries().length === 0){
+      @if(countries()?.length === 0){
         <tr>
           <td colspan="8" class="text-center">
             No countries found.

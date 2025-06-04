@@ -23,6 +23,11 @@ export const countryRoutes: Routes = [
       { path: 'by/:code',
         component: CountryPageComponent
       },
+         {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'by-capital'
+      },
       {path: '**', redirectTo: 'by-capital'}
     ]
   },

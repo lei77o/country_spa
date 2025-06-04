@@ -27,7 +27,7 @@ export class ByCountryComponent {
 
     if (!request.query) return of([]);
 
-    this.router.navigate(['country/by-country'], {
+    this.router.navigate(['/landing/country/by-country'], {
       queryParams: { query: request.query },
     })
 

@@ -25,7 +25,7 @@ export class ByCapitalPageComponent {
   request:() => ({ query : this.query()}),
   loader: ({ request })=> {
     if (!request.query) return of([]);
-    this.router.navigate(['country/by-capital'], {
+    this.router.navigate(['/landing/country/by-capital'], {
       queryParams: { query: request.query },
     })
     return this.countryService.searchByCapital(request.query);

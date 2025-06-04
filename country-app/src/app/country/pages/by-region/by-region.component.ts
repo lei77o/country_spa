@@ -52,7 +52,7 @@ export class ByRegionComponent {
         if (!request.region) {
           return of([]);
         }
-        this.router.navigate(['country/by-region'], {
+        this.router.navigate(['landing/country/by-region'], {
             queryParams: { query: request.region },
         })
         return this.countryService.searchByRegion(request.region)
