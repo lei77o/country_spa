@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'pipes-page',
@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './pipes-page.component.html',
   styleUrl: './pipes-page.component.css',
 })
-export default class PipesPageComponent { }
+export default class PipesPageComponent {
+
+}

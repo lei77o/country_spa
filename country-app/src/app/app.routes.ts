@@ -17,7 +17,15 @@ export const routes: Routes = [
       { path: 'pipes',
         loadChildren: () => import('./pipes/pipes.routes'),
       },
+      { path: 'forms',
+        loadChildren: () => import('./forms/forms.routes'),
+      },
+
     ],
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.routes'),
   },
   {path: '**', redirectTo: ''}
 ];
