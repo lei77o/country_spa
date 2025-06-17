@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormUtils } from '../../../../../utils/form-utils';
 
 @Component({
   selector: 'app-basic-page',
@@ -16,6 +17,7 @@ export class BasicPageComponent {
   });*/
 
   private fb = inject(FormBuilder);
+  formUtils = FormUtils;
 
   myForm: FormGroup = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
@@ -23,9 +25,14 @@ export class BasicPageComponent {
     inStorage: ['', [Validators.required]],
   });
 
-  isValidField(field: string): boolean {
-    const control = this.myForm.controls[field].errors;
-    return !!this.myForm.controls[field].errors;
 
+
+  onSave() {
+    if (this.myForm.invalid) {
+      this.myForm.markAllAsTouched();
+      return;
+    }
+    this.myForm.reset();
   }
+
 }

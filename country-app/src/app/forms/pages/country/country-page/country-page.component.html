@@ -1,59 +1,59 @@
 <h1 class="text-2xl font-bold mt-3">Nested Selectors</h1>
 <hr class="my-4" />
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 m-6">
+  <form class="w-full items-center justify-center" [formGroup]="myForm">
+    <!-- Region -->
+    <div class="mb-6">
 
-<form class="max-w-2xl mx-auto">
-  <!-- Region -->
-  <div class="mb-6">
-    <div>
       <label class="block text-sm font-medium text-gray-700 mb-2">Continent:</label>
-      <select formControlName="region"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-        <option value="">-- Select Continent --</option>
+      <select formControlName="region" class="select select-info">
+        <option value="">-- Seleccione Continente --</option>
 
-        <!-- <option [value]="region">
+        @for (region of regions(); track region) {
+        <option [value]="region">
           {{ region }}
-        </option> -->
-
+        </option>
+        }
       </select>
-    </div>
-  </div>
 
-  <!-- Countries -->
-  <div class="mb-6">
-    <div>
+    </div>
+
+    <!-- Countries -->
+    <div class="mb-6">
       <label class="block text-sm font-medium text-gray-700 mb-2">Country:</label>
-      <select formControlName="country"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-        <option value="">-- Select Country --</option>
+      <select formControlName="country" class="select select-info">
+        <option value="">-- Seleccione País --</option>
 
-        <!-- <option [value]="country.cca3">
-          {{ country.name }}
-        </option> -->
-
+        @for (country of countriesByRegion(); track country.cca3) {
+        <option [value]="country.cca3">
+          {{ country.name.common }}
+        </option>
+        }
       </select>
     </div>
-  </div>
 
-  <!-- Borders -->
-  <div class="mb-6">
-    <div>
+    <!-- Borders -->
+    <div class="mb-6">
       <label class="block text-sm font-medium text-gray-700 mb-2">Borders:</label>
-      <select formControlName="border"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-        <option value="">-- Select Border --</option>
+      <select formControlName="border" class="select select-info">
+        <option value="">-- Seleccione la frontera --</option>
 
-        <!-- <option [value]="country.cca3">
-          {{ country.name }}
-        </option> -->
+        @for (country of borders(); track country.cca3) {
+        <option [value]="country.cca3">
+          {{ country.name.common }}
+        </option>
+
+        }
       </select>
     </div>
-  </div>
-</form>
+  </form>
 
-<div class="mt-8 max-w-2xl mx-auto">
-  <h3 class="text-xl font-semibold mb-4">Form</h3>
-  <code class="block p-4 bg-gray-100 rounded-md">
+  <div class="mt-8">
+    <h3 class="text-xl font-semibold mb-4">Form</h3>
+    <code class="block p-4 bg-gray-100 rounded-md">
     <!-- {{ 'myForm.value' | json }} -->
+      <p>is form valid: {{ myForm.valid }}</p>
+      <p>Value: {{ myForm.value | json }}</p>
   </code>
-  <p class="mt-2 text-gray-700">is form valid: {{ 'myForm.valid' }}</p>
+  </div>
 </div>

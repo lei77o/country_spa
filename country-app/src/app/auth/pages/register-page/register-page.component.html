@@ -1,103 +1,119 @@
 <div class="max-w-2xl mx-auto p-4">
-    <h2 class="text-2xl font-bold mb-4">Validaciones Reactivas</h2>
-    <hr class="mb-6">
+  <h2 class="text-2xl font-bold mb-4">Reactive Validations</h2>
+  <hr class="mb-6">
 
-    <form autocomplete="off">
-        <!-- Nombre -->
-        <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700 mb-2">Nombre y apellido</label>
-            <div class="w-full">
-                <input type="text"
-                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                       placeholder="Nombre del usuario">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="myForm">
+    <!-- Name -->
+    <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+      <div class="w-full">
+        <input type="text"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="User's full name" formControlName="name">
 
-                <span class="text-sm text-red-600 mt-1 block">
-                    Debe de ser en formato de nombre y apellido
-                </span>
-            </div>
-        </div>
+          @if(formUtils.isValidField(myForm, 'name')) {
+            <span class="text-sm text-red-600 mt-1 block">
+                Name is not valid
+            </span>
+          }
 
-        <!-- Email -->
-        <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-            <div class="w-full">
-                <input type="email"
-                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                       placeholder="Email del usuario">
-                <span class="text-sm text-red-600 mt-1 block">
-                    mensaje de error del email
-                </span>
-            </div>
-        </div>
+      </div>
+    </div>
 
-        <!-- Username -->
-        <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
-            <div class="w-full">
-                <input type="text"
-                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                       placeholder="Nombre código del usuario">
-                <span class="text-sm text-red-600 mt-1 block">
-                    El username no puede ser Strider
-                </span>
-            </div>
-        </div>
+    <!-- Email -->
+    <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+      <div class="w-full">
+        <input type="email"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="User's email" formControlName="email">
+          @if(formUtils.isValidField(myForm, 'email')) {
+            <span class="text-sm text-red-600 mt-1 block">
+              {{ formUtils.getFieldError(myForm, 'email') }}
+            </span>
+          }
+      </div>
+    </div>
 
-        <!-- Password -->
-        <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
-            <div class="w-full">
-                <input type="password"
-                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                       placeholder="Password de su cuenta">
+    <!-- Username -->
+    <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
+      <div class="w-full">
+        <input type="text"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="User's username" formControlName="userName">
+          @if(formUtils.isValidField(myForm, 'userName')) {
+            <span class="text-sm text-red-600 mt-1 block">
+              {{ formUtils.getFieldError(myForm, 'userName') }}
+            </span>
+          }
+      </div>
+    </div>
 
-                <span class="text-sm text-red-600 mt-1 block">
-                    La contraseña debe de ser mayor de 6 caracteres.
-                </span>
-            </div>
-        </div>
+    <!-- Password -->
+    <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+      <div class="w-full">
+        <input type="password"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter password" formControlName="password">
 
-        <!-- Password2 -->
-        <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700 mb-2">Confirmar</label>
-            <div class="w-full">
-                <input type="password"
-                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                       placeholder="Confirmar la contraseña">
+         @if(formUtils.isValidField(myForm, 'password')) {
+            <span class="text-sm text-red-600 mt-1 block">
+              {{ formUtils.getFieldError(myForm, 'password') }}
+            </span>
+          }
+      </div>
+    </div>
 
-                <span class="text-sm text-red-600 mt-1 block">
-                    Las contraseñas deben de ser iguales
-                </span>
-            </div>
-        </div>
+    <!-- Confirm Password -->
+    <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-700 mb-2">Confirm</label>
+      <div class="w-full">
+        <input type="password"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Confirm your password" formControlName="password2">
 
-        <div class="mt-6">
-            <div class="w-full">
-                <button class="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
-                    Crear
-                </button>
-            </div>
-        </div>
-    </form>
+        @if(formUtils.isValidField(myForm, 'password2')) {
+            <span class="text-sm text-red-600 mt-1 block">
+              {{ formUtils.getFieldError(myForm, 'password2') }}
+            </span>
+          }
+      </div>
+       @if(myForm.errors && myForm.touched) {
+            <span class="text-sm text-red-600 mt-1 block">
+              Passwords are not equals.
+            </span>
+          }
+    </div>
+
+    <div class="mt-6">
+      <div class="w-full">
+        <button class="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+          Create
+        </button>
+      </div>
+    </div>
+  </form>
 </div>
 
-<h2>Form Valid: </h2>
-<h2>Form Status: </h2>
-<h2>Form Pending: </h2>
-<h2>Form errors</h2>
-<pre>{{ 'formulario' | json }}</pre>
+<h2>Form Valid: {{ myForm.valid| json }}</h2>
+<h2>Form Status: {{ myForm.status| json }}</h2>
+<h2>Form Pending: {{ myForm.pending| json }}</h2>
+<h2>Form Errors</h2>
+<pre>{{ myForm.errors| json }}</pre>
 
-<h5>Nombre</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<h5>Name</h5>
+<pre>{{ myForm.controls['name'].errors| json }}</pre>
 
 <h5>Email</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ myForm.controls['email'].errors| json }}</pre>
 
 <h5>Username</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ myForm.controls['userName'].errors| json }}</pre>
 
 <h5>Password</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ myForm.controls['password'].errors| json }}</pre>
 
-<h5>Confirmar</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<h5>Confirm</h5>
+<pre>{{ myForm.controls['password2'].errors| json }}</pre>
