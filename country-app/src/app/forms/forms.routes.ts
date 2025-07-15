@@ -10,10 +10,7 @@ export const formsChildrenRoutes: Routes = [
       path: 'country',
       loadChildren: () => import('./pages/country/country-pages.routes'),
     },
-    {
-      path: 'register',
-      loadChildren: () => import('../auth/auth.routes'),
-    },
+
       {
       path: '**',
       redirectTo: 'reactive'
